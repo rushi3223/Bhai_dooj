@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Bhai Dooj - Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app-viewport">
+      <div id="app-root">
+        <header class="app-header">
+          <div class="badge">Game Time</div>
+          <h1 class="title">Sister vs Brother</h1>
+          <p class="subtitle">You play as Sister, Brother plays automatically!</p>
+        </header>
+        <main class="app-main">
+          <section class="game-section">
+            <div class="game-info">
+              <div class="player-info">
+                <div class="player boy-player">
+                  <img src="k9_ikIy4.jpg" alt="Boy" class="player-avatar" />
+                  <span class="player-name">AI Brother</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="player girl-player">
+                  <img src="jI3ylnP2.jpg" alt="Girl" class="player-avatar" />
+                  <span class="player-name">Sister</span>
+                </div>
+              </div>
+            <div class="current-player" id="currentPlayer">Sister's Turn</div>
+          </div>
+          
+          <div class="task-description">
+            <h3>🎯 Sister's Mission</h3>
+            <p class="task-text">
+              <strong>Beat your annoying brother!</strong> He thinks he's so smart with his "brain" 
+              but you're going to show him who's really the clever one! 😤
+            </p>
+            <p class="task-text">
+              Win this game and prove that sisters are always smarter than brothers! 
+              Make him eat his digital dust! 💪✨
+            </p>
+            <div class="win-condition">
+              <span class="win-text">🏆 Win the game to unlock the next page! 🏆</span>
+            </div>
+          </div>
+            
+            <div class="game-board" id="gameBoard">
+              <div class="cell" data-index="0"></div>
+              <div class="cell" data-index="1"></div>
+              <div class="cell" data-index="2"></div>
+              <div class="cell" data-index="3"></div>
+              <div class="cell" data-index="4"></div>
+              <div class="cell" data-index="5"></div>
+              <div class="cell" data-index="6"></div>
+              <div class="cell" data-index="7"></div>
+              <div class="cell" data-index="8"></div>
+            </div>
+            
+            <div class="game-controls">
+              <button class="btn primary" id="nextPage" style="display: none;">Next</button>
+            <button class="btn secondary" id="playAgain" style="display: none;">Try Again</button>
+              <button class="btn ghost" id="backToHome">Back</button>
+            </div>
+            
+            <div class="game-result" id="gameResult" style="display: none;">
+              <h3 id="resultText"></h3>
+            </div>
+          </section>
+        </main>
+        <footer class="app-footer">
+          <small>Crafted with ❤️ for Bhai Dooj</small>
+        </footer>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="game.js"></script>
+  </body>
+  </html>
+
+

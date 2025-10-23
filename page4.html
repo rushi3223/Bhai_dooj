@@ -1,0 +1,435 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Bhai Dooj - A Few Songs For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      .music-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px;
+        background: linear-gradient(135deg, #ff7aa2, #f793ff);
+        color: #333;
+        overflow: hidden;
+      }
+      .music-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 25px;
+        padding: 30px 20px;
+        max-width: 350px;
+        width: 100%;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+      .music-title {
+        margin-bottom: 10px;
+      }
+      .music-title h1 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0;
+        color: #ff7aa2;
+      }
+      .hearts {
+        font-size: 20px;
+        color: #ff7aa2;
+        margin: 5px 0;
+      }
+      .cartoon-image {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(255, 122, 162, 0.3);
+      }
+      .cartoon-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .song-status {
+        background: linear-gradient(135deg, #fff, #f9f9f9);
+        border: 2px solid #ff7aa2;
+        border-radius: 20px;
+        padding: 12px 20px;
+        margin: 20px 0;
+        font-weight: 700;
+        color: #ff7aa2;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-shadow: 0 4px 12px rgba(255, 122, 162, 0.2);
+        font-size: 12px;
+      }
+      .song-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        margin: 10px 0;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      }
+      .time-display {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #666;
+        margin: 10px 0;
+        font-weight: 500;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 3px;
+        margin: 15px 0;
+        cursor: pointer;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #ff7aa2, #f793ff);
+        border-radius: 3px;
+        width: 0%;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px rgba(255, 122, 162, 0.5);
+      }
+      .player-controls {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 20px 0;
+      }
+      .control-btn {
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: #ff7aa2;
+        cursor: pointer;
+        padding: 12px;
+        transition: all 0.3s ease;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(255, 122, 162, 0.3);
+      }
+      .control-btn:hover {
+        color: #e65c9a;
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(255, 122, 162, 0.4);
+      }
+      .play-pause {
+        font-size: 20px;
+        background: linear-gradient(135deg, #ff7aa2, #f793ff);
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 20px rgba(255, 122, 162, 0.4);
+      }
+      .play-pause:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 24px rgba(255, 122, 162, 0.5);
+      }
+      .letter-controls {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        justify-content: space-between;
+      }
+      .back-btn {
+        background: #e3f2fd;
+        color: #1976d2;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        flex: 1;
+        margin-right: 6px;
+      }
+      .next-btn {
+        background: #fce4ec;
+        color: #ff4d88;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        flex: 1;
+        margin-left: 6px;
+      }
+      audio {
+        display: none;
+      }
+      .slow-motion {
+        animation: slow-rotate 5s linear infinite;
+      }
+      @keyframes slow-rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-viewport">
+      <div id="app-root">
+        <div class="music-page">
+          <div class="music-container">
+            <div class="music-title">
+              <h1>A few songs for you</h1>
+              <div class="hearts">♥ ♥</div>
+            </div>
+
+            <div class="cartoon-image">
+              <img id="cartoonImg" src="https://www.pinclipart.com/picdir/big/537-5379913_brother-and-sister-cartoon-png-clipart.png" alt="Brother and Sister Cartoon">
+              <video id="videoPlayer" preload="metadata" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+            </div>
+
+            <div class="song-status" id="songStatus" style="margin: 25px 0;">PAUSED</div>
+            <div class="song-name" id="songName" style="margin: 15px 0;">Ashiyan</div>
+
+            <div class="time-display" style="margin: 15px 0;">
+              <span id="currentTime">00:00</span>
+              <span id="totalTime">02:27</span>
+            </div>
+
+            <div class="progress-bar" style="margin: 20px 0;">
+              <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="player-controls" style="margin: 25px 0;">
+              <button class="control-btn" id="prevBtn">◀</button>
+              <button class="control-btn play-pause" id="playPauseBtn">▶</button>
+              <button class="control-btn" id="nextBtn">▶</button>
+            </div>
+
+            <div class="letter-controls">
+              <button class="back-btn" id="backToLetter">← Back</button>
+              <button class="next-btn" id="nextPage">Next →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audioPlayer" preload="metadata" style="display: none;"></audio>
+    <video id="videoPlayer" preload="metadata" style="display: none;"></video>
+    <script src="app.js"></script>
+    <script>
+      // Song data - first is video, others audio
+      const songs = [
+        { name: 'Ashiyan', src: 'assets/WhatsApp Video 2025-10-23 at 6.08.47 PM.mp4', type: 'video' },
+        { name: 'Phoolon ka taaroka', src: 'assets/WhatsApp Audio 2025-10-23 at 6.09.03 PM.mp3', type: 'audio', image: 'assets/Screenshot (73).png' },
+        { name: 'Ye Tasveer Hai', src: 'assets/WhatsApp Audio 2025-10-23 at 6.09.04 PM(1).mp3', type: 'audio', image: 'WhatsApp Image 2025-10-23 at 2.57.26 PM.jpeg' },
+        { name: 'Tujo hai Saath mere To Dagar', src: 'assets/WhatsApp Audio 2025-10-23 at 6.09.04 PM.mp3', type: 'audio', image: 'QMlS-vZG.gif' }
+      ];
+
+      let currentSongIndex = 0;
+      let currentPlayer = null; // 'audio' or 'video'
+      const audio = document.getElementById('audioPlayer');
+      const video = document.getElementById('videoPlayer');
+      const cartoonImg = document.getElementById('cartoonImg');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const songStatus = document.getElementById('songStatus');
+      const songName = document.getElementById('songName');
+      const currentTimeEl = document.getElementById('currentTime');
+      const totalTimeEl = document.getElementById('totalTime');
+      const progress = document.getElementById('progress');
+      const progressBar = document.querySelector('.progress-bar');
+
+      // Pause current player
+      function pauseCurrent() {
+        if (currentPlayer === 'audio' && !audio.paused) audio.pause();
+        if (currentPlayer === 'video' && !video.paused) video.pause();
+      }
+
+      // Play current player
+      function playCurrent() {
+        if (currentPlayer === 'audio') audio.play();
+        if (currentPlayer === 'video') video.play();
+      }
+
+      // Get current time from player
+      function getCurrentTime() {
+        return currentPlayer === 'audio' ? audio.currentTime : video.currentTime;
+      }
+
+      // Get duration from player
+      function getDuration() {
+        return currentPlayer === 'audio' ? audio.duration : video.duration;
+      }
+
+      // Set current time
+      function setCurrentTime(time) {
+        if (currentPlayer === 'audio') audio.currentTime = time;
+        if (currentPlayer === 'video') video.currentTime = time;
+      }
+
+      // Load initial song
+      function loadSong(index) {
+        pauseCurrent();
+        const song = songs[index];
+        songName.textContent = song.name;
+        currentSongIndex = index;
+
+        if (song.type === 'video') {
+          currentPlayer = 'video';
+          cartoonImg.style.display = 'none';
+          video.style.display = 'block';
+          video.src = song.src;
+          audio.src = ''; // Hide audio
+        } else {
+          currentPlayer = 'audio';
+          cartoonImg.style.display = 'block';
+          video.style.display = 'none';
+          video.src = '';
+          audio.src = song.src;
+          cartoonImg.src = song.image || 'https://www.pinclipart.com/picdir/big/537-5379913_brother-and-sister-cartoon-png-clipart.png';
+          if (index === 3) {
+            cartoonImg.classList.add('slow-motion');
+          } else {
+            cartoonImg.classList.remove('slow-motion');
+          }
+          if (song.duration) totalTimeEl.textContent = song.duration;
+        }
+
+        // Load metadata for duration
+        if (currentPlayer === 'audio') {
+          audio.addEventListener('loadedmetadata', function updateDuration() {
+            totalTimeEl.textContent = formatTime(audio.duration);
+            audio.removeEventListener('loadedmetadata', updateDuration);
+          });
+        } else if (currentPlayer === 'video') {
+          video.addEventListener('loadedmetadata', function updateDuration() {
+            totalTimeEl.textContent = formatTime(video.duration);
+            video.removeEventListener('loadedmetadata', updateDuration);
+          });
+        }
+      }
+
+      // Play/Pause
+      playPauseBtn.addEventListener('click', () => {
+        if (currentPlayer && getCurrentTime() > 0 || !getCurrentTime()) { // If loaded
+          if (currentPlayer === 'audio' ? audio.paused : video.paused) {
+            playCurrent();
+            playPauseBtn.textContent = '⏸';
+            songStatus.textContent = 'PLAYING';
+          } else {
+            pauseCurrent();
+            playPauseBtn.textContent = '▶';
+            songStatus.textContent = 'PAUSED';
+          }
+        }
+      });
+
+      // Previous
+      prevBtn.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(currentSongIndex);
+        if (playPauseBtn.textContent === '⏸') playCurrent();
+      });
+
+      // Next
+      nextBtn.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(currentSongIndex);
+        if (playPauseBtn.textContent === '⏸') playCurrent();
+      });
+
+      // Time update - attach to both players
+      function setupTimeUpdate() {
+        const timeUpdate = () => {
+          if (currentPlayer) {
+            const current = formatTime(getCurrentTime());
+            currentTimeEl.textContent = current;
+            const percent = (getCurrentTime() / getDuration()) * 100 || 0;
+            progress.style.width = percent + '%';
+          }
+        };
+
+        audio.addEventListener('timeupdate', timeUpdate);
+        video.addEventListener('timeupdate', timeUpdate);
+      }
+      setupTimeUpdate();
+
+      // Auto-play next song when current ends
+      audio.addEventListener('ended', () => {
+        nextBtn.click();
+      });
+      video.addEventListener('ended', () => {
+        nextBtn.click();
+      });
+
+      // Loaded metadata for duration - handled in loadSong
+
+      // Progress bar click and drag
+      let isDragging = false;
+      progressBar.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateProgress(e);
+      });
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          updateProgress(e);
+        }
+      });
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      function updateProgress(e) {
+        if (currentPlayer && getDuration()) {
+          const rect = progressBar.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const width = progressBar.offsetWidth;
+          const percent = Math.max(0, Math.min(100, (clickX / width) * 100));
+          progress.style.width = percent + '%';
+          setCurrentTime((percent / 100) * getDuration());
+        }
+      }
+
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return '00:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Navigation buttons
+      const backToLetterBtn = document.getElementById('backToLetter');
+      backToLetterBtn?.addEventListener('click', () => {
+        window.location.href = 'page3.html';
+      });
+
+      const nextPageBtn = document.getElementById('nextPage');
+      nextPageBtn?.addEventListener('click', () => {
+        window.location.href = 'page5.html';
+      });
+
+      // Initial load
+      loadSong(0);
+    </script>
+  </body>
+</html>

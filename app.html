@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ff7aa2" />
+    <title>Bhai Dooj</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app-viewport">
+      <div id="app-root" role="application" aria-label="Bhai Dooj App" tabindex="-1">
+        <header class="app-header">
+          <div class="badge">Bhai Dooj</div>
+          <h1 class="title">Blessings & Bonds</h1>
+          <p class="subtitle">Celebrate the sibling love</p>
+        </header>
+
+        <main class="app-main">
+          <!-- Page 1: Landing Page -->
+          <div class="page-content" id="page1">
+            <section class="landing">
+              <div class="landing-title" style="font-size: 28px; font-weight: 700; color: #ff7aa2; text-align: center; margin: 10px 0; line-height: 1.2;">
+                FOR MY LOVELY
+              </div>
+              <div style="font-size: 28px; font-weight: 700; color: #ff7aa2; text-align: center; margin: 0 0 20px 0; line-height: 1.2;">
+                SISTER
+              </div>
+              <div style="font-size: 24px; font-weight: 600; color: #333; text-align: center; margin: 10px 0;">
+                BHAI DOOJ
+              </div>
+              <div style="font-size: 20px; font-weight: 600; color: #ff7aa2; text-align: center; margin: 10px 0;">
+                DEAR SIS
+              </div>
+              <p class="landing-lead" style="font-size: 16px; color: #333; text-align: center; margin: 20px 0; line-height: 1.4; max-width: 300px;">
+                You've always been supporter, my secret keeper, and my crime partner. I just want to know how lucky I am to have you as sister.
+              </p>
+              <img class="landing-img" src="jI3ylnP2.jpg" alt="Brother and Sister" style="width: 200px; height: auto; display: block; margin: 20px auto; border-radius: 15px;" />
+            </section>
+
+            <div class="bottom-cta" style="margin-top: 10px;">
+              <button class="btn light" id="btnNext" style="background: #ff7aa2; color: white; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600;">Next →</button>
+            </div>
+          </div>
+
+          <!-- Page 2: Game Page -->
+          <div class="page-content" id="page2" style="display: none;">
+            <section class="game-section">
+              <div class="game-info">
+                <div class="player-info">
+                  <div class="player boy-player">
+                    <img src="k9_ikIy4.jpg" alt="Boy" class="player-avatar" />
+                    <span class="player-name">AI Brother</span>
+                  </div>
+                  <div class="vs">VS</div>
+                  <div class="player girl-player">
+                    <img src="jI3ylnP2.jpg" alt="Girl" class="player-avatar" />
+                    <span class="player-name">Sister</span>
+                  </div>
+                </div>
+                <div class="current-player" id="currentPlayer">Sister's Turn</div>
+              </div>
+              
+              <div class="task-description">
+                <h3>🎯 Sister's Mission</h3>
+                <p class="task-text">
+                  <strong>Beat your annoying brother!</strong> He thinks he's so smart with his "brain" 
+                  but you're going to show him who's really the clever one! 😤
+                </p>
+                <p class="task-text">
+                  Win this game and prove that sisters are always smarter than brothers! 
+                  Make him eat his digital dust! 💪✨
+                </p>
+                <div class="win-condition">
+                  <span class="win-text">🏆 Win the game to unlock the next page! 🏆</span>
+                </div>
+              </div>
+              
+              <div class="game-board" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+              </div>
+              
+              <div class="game-controls">
+                <button class="btn primary" id="nextPage" style="display: none;">Next</button>
+                <button class="btn secondary" id="playAgain" style="display: none;">Play Again</button>
+                <button class="btn ghost" id="backToHome">Back</button>
+              </div>
+              
+              <div class="game-result" id="gameResult" style="display: none;">
+                <h3 id="resultText"></h3>
+              </div>
+            </section>
+          </div>
+
+          <!-- Page 3: Letter Page -->
+          <div class="page-content" id="page3" style="display: none;">
+            <div class="letter-page">
+              <div class="letter-card">
+                <div class="shinchan-character">
+                  <img src="oC_Y2hO0-removebg-preview.png" alt="Shin-chan" class="shinchan-img" />
+                </div>
+                
+                <div class="letter-header">
+                  <h1 class="letter-title">A LETTER</h1>
+                  <h2 class="letter-subtitle">FROM YOUR BHAI</h2>
+                  <div class="star-divider">✦</div>
+                </div>
+                
+                <div class="letter-body">
+                  <p class="greeting">Dear Sister 💖✨</p>
+                  
+                  <p class="letter-message">
+                    I just want to remind you how special you are to me. 
+                    May your life shine as bright as your smile, and may 
+                    chocolates always find their way to you 🍫
+                  </p>
+                  
+                  <div class="sparkles">✨ ✨</div>
+                  
+                  <p class="signature">- With love, your brother</p>
+                  
+                  <div class="envelope-icon">💌</div>
+                </div>
+              </div>
+              
+              <div class="happy-badge">
+                <div class="badge-content">
+                  <span class="badge-top">HAPPY</span>
+                  <div class="badge-heart">❤️</div>
+                  <span class="badge-bottom">BHAI DOOJ</span>
+                </div>
+              </div>
+              
+              <div class="letter-controls">
+                <button class="btn back-btn" id="backToGame">← Back</button>
+                <button class="btn next-btn" id="nextPage">Next →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 4: Next Page -->
+          <div class="page-content" id="page4" style="display: none;">
+            <div class="next-page-container">
+              <div class="next-page-content">
+                <h1 class="next-page-title">🎉 Congratulations! 🎉</h1>
+                <p class="next-page-message">
+                  You've completed the Bhai Dooj journey! 
+                  The bond between siblings is truly special.
+                </p>
+                <div class="celebration-icons">
+                  <span class="celebration-icon">🎊</span>
+                  <span class="celebration-icon">🎉</span>
+                  <span class="celebration-icon">💕</span>
+                  <span class="celebration-icon">🎊</span>
+                </div>
+              </div>
+              
+              <div class="next-page-controls">
+                <button class="btn back-btn" id="backToLetter">← Back</button>
+                <button class="btn next-btn" id="backToHome">Home →</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="app-footer">
+          <small>Crafted with ❤️ for Bhai Dooj</small>
+        </footer>
+      </div>
+    </div>
+
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <script src="app.js"></script>
+  </body>
+</html>
