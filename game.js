@@ -113,8 +113,8 @@
 
     isAIPlaying = true;
 
-    // Get the best move using minimax
-    const bestMove = getBestMove();
+    // Get the best move using limited-depth minimax for medium difficulty
+    const bestMove = getBestMove(4); // Depth limit 4 for medium difficulty
 
     if (bestMove !== null) {
       gameBoard[bestMove] = "boy";
@@ -151,13 +151,13 @@
     }
   }
 
-  function getBestMove() {
+  function getBestMove(maxDepth) {
     let bestScore = -Infinity;
-    let bestMove;
+    let bestMove = null;
     for (let i = 0; i < 9; i++) {
       if (gameBoard[i] === "") {
         gameBoard[i] = "boy";
-        let score = minimax(gameBoard, 0, false);
+        let score = minimax(gameBoard, 0, false, maxDepth);
         gameBoard[i] = "";
         if (score > bestScore) {
           bestScore = score;
@@ -168,7 +168,9 @@
     return bestMove;
   }
 
-  function minimax(board, depth, isMaximizing) {
+  function minimax(board, depth, isMaximizing, maxDepth) {
+    if (depth >= maxDepth) return 0; // Depth limit for medium difficulty
+
     if (checkWinForPlayer("boy", board)) return 10 - depth;
     if (checkWinForPlayer("girl", board)) return depth - 10;
     if (isBoardFull(board)) return 0;
@@ -178,7 +180,7 @@
       for (let i = 0; i < 9; i++) {
         if (board[i] === "") {
           board[i] = "boy";
-          let score = minimax(board, depth + 1, false);
+          let score = minimax(board, depth + 1, false, maxDepth);
           board[i] = "";
           bestScore = Math.max(score, bestScore);
         }
@@ -189,7 +191,7 @@
       for (let i = 0; i < 9; i++) {
         if (board[i] === "") {
           board[i] = "girl";
-          let score = minimax(board, depth + 1, true);
+          let score = minimax(board, depth + 1, true, maxDepth);
           board[i] = "";
           bestScore = Math.min(score, bestScore);
         }
