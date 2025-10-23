@@ -15,7 +15,7 @@ body {
   margin: 0;
   font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--text);
-  background: radial-gradient(1200px 600px at 50% -200px, #ffe3ed, var(--bg));
+  background: linear-gradient(180deg, #fffafd 0%, #fff6fa 30%, #fff 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
