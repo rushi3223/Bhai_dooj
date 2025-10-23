@@ -54,11 +54,16 @@
         border-radius: 50%;
         overflow: hidden;
         box-shadow: 0 8px 25px rgba(255, 122, 162, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f9f9f9;
       }
       .cartoon-image img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        border-radius: 50%;
       }
       .song-status {
         background: linear-gradient(135deg, #fff, #f9f9f9);
@@ -201,7 +206,7 @@
 
             <div class="cartoon-image">
               <img id="cartoonImg" src="https://www.pinclipart.com/picdir/big/537-5379913_brother-and-sister-cartoon-png-clipart.png" alt="Brother and Sister Cartoon">
-              <video id="videoPlayer" preload="metadata" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
+              <video id="videoPlayer" preload="metadata" style="display: none; width: 100%; height: 100%; object-fit: contain; border-radius: 50%;"></video>
             </div>
 
             <div class="song-status" id="songStatus" style="margin: 25px 0;">PAUSED</div>
