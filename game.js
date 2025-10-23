@@ -59,7 +59,7 @@
       gameActive = false;
       const winner = currentPlayer === "boy" ? "Brother" : "Sister";
       if (winner === "Sister") {
-        resultTextEl.textContent = `🎉 Sister Wins! You beat the AI brother! 🎉`;
+        resultTextEl.textContent = `🎉 Sister Wins! You beat the brother! 🎉`;
         // Show next page button after sister wins
         setTimeout(() => {
           nextPageBtn.style.display = "block";
