@@ -113,79 +113,99 @@
 
     isAIPlaying = true;
 
-    // AI Strategy: Try to win, then block, then take center, then corners, then edges
-    let move =
-      findWinningMove("boy") ||
-      findWinningMove("girl") ||
-      (gameBoard[4] === "" ? 4 : null) ||
-      findCornerMove() ||
-      findEdgeMove();
+    // Get the best move using minimax
+    const bestMove = getBestMove();
 
-    if (move !== null) {
-      setTimeout(() => {
-        gameBoard[move] = "boy";
-        const cell = document.querySelector(`[data-index="${move}"]`);
-        cell.classList.add("boy");
+    if (bestMove !== null) {
+      gameBoard[bestMove] = "boy";
+      const cell = document.querySelector(`[data-index="${bestMove}"]`);
+      cell.classList.add("boy");
 
-        if (checkWin()) {
-          gameActive = false;
-          resultTextEl.textContent = `😤 Brother Wins! Try again, Sister! 😤`;
-          gameResultEl.style.display = "block";
-          // Show play again button when brother wins
-          setTimeout(() => {
-            playAgainBtn.style.display = "block";
-          }, 1000);
-          isAIPlaying = false;
-          return;
-        }
-
-        if (checkDraw()) {
-          gameActive = false;
-          resultTextEl.textContent = "🤝 It's a Draw! 🤝";
-          gameResultEl.style.display = "block";
-          // Show play again button on draw
-          setTimeout(() => {
-            playAgainBtn.style.display = "block";
-          }, 1000);
-          isAIPlaying = false;
-          return;
-        }
-
-        currentPlayer = "girl";
-        updateCurrentPlayer();
+      if (checkWin()) {
+        gameActive = false;
+        resultTextEl.textContent = `😤 Brother Wins! Try again, Sister! 😤`;
+        gameResultEl.style.display = "block";
+        // Show play again button when brother wins
+        setTimeout(() => {
+          playAgainBtn.style.display = "block";
+        }, 1000);
         isAIPlaying = false;
-      }, 500);
+        return;
+      }
+
+      if (checkDraw()) {
+        gameActive = false;
+        resultTextEl.textContent = "🤝 It's a Draw! 🤝";
+        gameResultEl.style.display = "block";
+        // Show play again button on draw
+        setTimeout(() => {
+          playAgainBtn.style.display = "block";
+        }, 1000);
+        isAIPlaying = false;
+        return;
+      }
+
+      currentPlayer = "girl";
+      updateCurrentPlayer();
+      isAIPlaying = false;
     }
   }
 
-  function findWinningMove(player) {
-    for (let condition of winningConditions) {
-      const [a, b, c] = condition;
-      const line = [gameBoard[a], gameBoard[b], gameBoard[c]];
-      const playerCount = line.filter((cell) => cell === player).length;
-      const emptyCount = line.filter((cell) => cell === "").length;
-
-      if (playerCount === 2 && emptyCount === 1) {
-        return condition.find((index) => gameBoard[index] === "");
+  function getBestMove() {
+    let bestScore = -Infinity;
+    let bestMove;
+    for (let i = 0; i < 9; i++) {
+      if (gameBoard[i] === "") {
+        gameBoard[i] = "boy";
+        let score = minimax(gameBoard, 0, false);
+        gameBoard[i] = "";
+        if (score > bestScore) {
+          bestScore = score;
+          bestMove = i;
+        }
       }
     }
-    return null;
+    return bestMove;
   }
 
-  function findCornerMove() {
-    const corners = [0, 2, 6, 8];
-    const emptyCorners = corners.filter((index) => gameBoard[index] === "");
-    return emptyCorners.length > 0
-      ? emptyCorners[Math.floor(Math.random() * emptyCorners.length)]
-      : null;
+  function minimax(board, depth, isMaximizing) {
+    if (checkWinForPlayer("boy", board)) return 10 - depth;
+    if (checkWinForPlayer("girl", board)) return depth - 10;
+    if (isBoardFull(board)) return 0;
+
+    if (isMaximizing) {
+      let bestScore = -Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (board[i] === "") {
+          board[i] = "boy";
+          let score = minimax(board, depth + 1, false);
+          board[i] = "";
+          bestScore = Math.max(score, bestScore);
+        }
+      }
+      return bestScore;
+    } else {
+      let bestScore = Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (board[i] === "") {
+          board[i] = "girl";
+          let score = minimax(board, depth + 1, true);
+          board[i] = "";
+          bestScore = Math.min(score, bestScore);
+        }
+      }
+      return bestScore;
+    }
   }
 
-  function findEdgeMove() {
-    const edges = [1, 3, 5, 7];
-    const emptyEdges = edges.filter((index) => gameBoard[index] === "");
-    return emptyEdges.length > 0
-      ? emptyEdges[Math.floor(Math.random() * emptyEdges.length)]
-      : null;
+  function checkWinForPlayer(player, board) {
+    return winningConditions.some((condition) => {
+      return condition.every((index) => board[index] === player);
+    });
+  }
+
+  function isBoardFull(board) {
+    return board.every((cell) => cell !== "");
   }
 
   function goToNextPage() {
