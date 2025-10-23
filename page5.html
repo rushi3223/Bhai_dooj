@@ -2,32 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=393, height=852, initial-scale=1, viewport-fit=cover" />
     <title>Bhai Dooj - Thank You</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #ff7aa2, #f793ff);
-        height: 100vh;
+      #app-root {
+        width: 393px;
+        height: 852px;
+        background: linear-gradient(180deg, #fffafd 0%, #fff6fa 30%, #fff 100%);
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        padding: 20px;
+        box-sizing: border-box;
       }
       .thank-you-container {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 25px;
         padding: 40px 30px;
+        width: 100%;
         max-width: 350px;
-        width: 90%;
         text-align: center;
         box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        flex: 1;
       }
       .header-banner {
         background: linear-gradient(135deg, #ff7aa2, #f793ff);
@@ -66,23 +74,23 @@
         font-weight: 600;
       }
       .back-btn {
-        display: block;
+        display: inline-block;
         margin: 30px auto 0;
-        background: rgba(255, 122, 162, 0.8);
-        color: white;
+        background: #fce4ec;
+        color: #ff4d88;
         border: none;
-        padding: 12px 24px;
-        border-radius: 25px;
-        font-size: 14px;
+        border-radius: 20px;
+        padding: 8px 12px;
+        font-size: 13px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: 0 4px 12px rgba(255, 122, 162, 0.3);
-        width: 100%;
-        max-width: 200px;
+        width: fit-content;
       }
       .back-btn:hover {
         background: #ff7aa2;
+        color: white;
         transform: translateY(-2px);
         box-shadow: 0 6px 16px rgba(255, 122, 162, 0.4);
       }
@@ -92,17 +100,21 @@
     </style>
   </head>
   <body>
-    <div class="thank-you-container">
-      <div class="header-banner">FROM YOUR BHAI WITH LOVE</div>
-      <div class="hearts">💕</div>
-      <h1 class="thank-you-title">Thank You FOR BEING THERE</h1>
-      <p class="thank-you-message">
-        You make every small thing brighter and happier. I'm happiest and lucky to have you - thank you for being the sweetest part of my days. 💖✨
-      </p>
-      <div class="footer-text">
-        made with 💖 bhai ✨ <span class="emoji">🐱</span> <span class="emoji">🐱</span>
+    <div id="app-viewport">
+      <div id="app-root">
+        <div class="thank-you-container">
+          <div class="header-banner">FROM YOUR BHAI WITH LOVE</div>
+          <div class="hearts">💕</div>
+          <h1 class="thank-you-title">Thank You FOR BEING THERE</h1>
+          <p class="thank-you-message">
+            You make every small thing brighter and happier. I'm happiest and lucky to have you - thank you for being the sweetest part of my days. 💖✨
+          </p>
+          <div class="footer-text">
+            made with 💖 bhai ✨ <span class="emoji">🐱</span> <span class="emoji">🐱</span>
+          </div>
+          <button class="back-btn" onclick="window.location.href='page4.html'">← Back</button>
+        </div>
       </div>
-      <button class="back-btn" onclick="window.location.href='page4.html'">← Back</button>
     </div>
   </body>
 </html>
