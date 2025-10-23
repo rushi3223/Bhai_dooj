@@ -113,12 +113,13 @@
 
     isAIPlaying = true;
 
-    // Get the best move using limited-depth minimax for medium difficulty
-    const bestMove = getBestMove(4); // Depth limit 4 for medium difficulty
+    // Simple AI Strategy: Try to win, then block sister, then random empty cell
+    let move =
+      findWinningMove("boy") || findWinningMove("girl") || getRandomMove();
 
-    if (bestMove !== null) {
-      gameBoard[bestMove] = "boy";
-      const cell = document.querySelector(`[data-index="${bestMove}"]`);
+    if (move !== null) {
+      gameBoard[move] = "boy";
+      const cell = document.querySelector(`[data-index="${move}"]`);
       cell.classList.add("boy");
 
       if (checkWin()) {
@@ -151,63 +152,31 @@
     }
   }
 
-  function getBestMove(maxDepth) {
-    let bestScore = -Infinity;
-    let bestMove = null;
+  function findWinningMove(player) {
+    for (let condition of winningConditions) {
+      const [a, b, c] = condition;
+      const line = [gameBoard[a], gameBoard[b], gameBoard[c]];
+      const playerCount = line.filter((cell) => cell === player).length;
+      const emptyCount = line.filter((cell) => cell === "").length;
+
+      if (playerCount === 2 && emptyCount === 1) {
+        return condition.find((index) => gameBoard[index] === "");
+      }
+    }
+    return null;
+  }
+
+  function getRandomMove() {
+    const emptyCells = [];
     for (let i = 0; i < 9; i++) {
       if (gameBoard[i] === "") {
-        gameBoard[i] = "boy";
-        let score = minimax(gameBoard, 0, false, maxDepth);
-        gameBoard[i] = "";
-        if (score > bestScore) {
-          bestScore = score;
-          bestMove = i;
-        }
+        emptyCells.push(i);
       }
     }
-    return bestMove;
-  }
-
-  function minimax(board, depth, isMaximizing, maxDepth) {
-    if (depth >= maxDepth) return 0; // Depth limit for medium difficulty
-
-    if (checkWinForPlayer("boy", board)) return 10 - depth;
-    if (checkWinForPlayer("girl", board)) return depth - 10;
-    if (isBoardFull(board)) return 0;
-
-    if (isMaximizing) {
-      let bestScore = -Infinity;
-      for (let i = 0; i < 9; i++) {
-        if (board[i] === "") {
-          board[i] = "boy";
-          let score = minimax(board, depth + 1, false, maxDepth);
-          board[i] = "";
-          bestScore = Math.max(score, bestScore);
-        }
-      }
-      return bestScore;
-    } else {
-      let bestScore = Infinity;
-      for (let i = 0; i < 9; i++) {
-        if (board[i] === "") {
-          board[i] = "girl";
-          let score = minimax(board, depth + 1, true, maxDepth);
-          board[i] = "";
-          bestScore = Math.min(score, bestScore);
-        }
-      }
-      return bestScore;
+    if (emptyCells.length > 0) {
+      return emptyCells[Math.floor(Math.random() * emptyCells.length)];
     }
-  }
-
-  function checkWinForPlayer(player, board) {
-    return winningConditions.some((condition) => {
-      return condition.every((index) => board[index] === player);
-    });
-  }
-
-  function isBoardFull(board) {
-    return board.every((cell) => cell !== "");
+    return null;
   }
 
   function goToNextPage() {
