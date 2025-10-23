@@ -9,145 +9,170 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        overflow: hidden;
-        background: linear-gradient(180deg, #fffafd 0%, #fff6fa 30%, #fff 100%);
-        font-family: 'Poppins', sans-serif;
-      }
-      .app-main {
-        height: calc(100vh - 100px);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        overflow: hidden;
-      }
-      .landing-title {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      .landing-title h1 {
-        font-size: 32px;
-        font-weight: 600;
-        color: #333;
-        margin: 0 0 8px 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      .landing-title h2 {
-        font-size: 60px;
-        font-weight: 800;
-        color: #ff7aa2;
-        margin: 0 0 15px 0;
-        text-shadow: 0 3px 6px rgba(255, 122, 162, 0.4);
-      }
-      .landing-title h3 {
-        font-size: 24px;
-        font-weight: 700;
-        color: #ff7aa2;
-        margin: 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-shadow: 0 2px 4px rgba(255, 122, 162, 0.3);
-      }
-      .landing-title h3::before,
-      .landing-title h3::after {
-        content: " ★ ";
-        color: #ff7aa2;
-      }
-      .landing-lead {
-        font-size: 16px;
-        color: #333;
-        line-height: 1.6;
-        text-align: center;
-        margin: 0 auto 15px auto;
-        max-width: 280px;
-        font-weight: 400;
-      }
-      .landing-lead::after {
-        content: " ★★";
-        color: #ff7aa2;
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        font-size: 18px;
-      }
-      .landing-img {
-        display: block;
-        margin: 15px auto;
-        max-width: 180px;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      }
-      .bottom-cta {
-        position: fixed;
-        bottom: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-      }
-      .btn.light {
-        background: #ff7aa2;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 25px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(255, 122, 162, 0.3);
-      }
-      .btn.light:hover {
-        background: #e65c9a;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(255, 122, 162, 0.4);
-      }
-      .app-footer {
-        position: fixed;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        text-align: center;
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 12px;
-      }
-      #app-viewport {
-        height: 100vh;
-        overflow: hidden;
-      }
-    </style>
   </head>
   <body>
     <div id="app-viewport">
       <div id="app-root" role="application" aria-label="Bhai Dooj App" tabindex="-1">
         <header class="app-header">
+          <div class="badge">Bhai Dooj</div>
+          <h1 class="title">Blessings & Bonds</h1>
+          <p class="subtitle">Celebrate the sibling love</p>
         </header>
 
         <main class="app-main">
-          <section class="landing" id="landing">
-            <div class="landing-title">
-              <h1>FOR MY LOVELY SISTER</h1>
-              <h2>★</h2>
-              <h3>HAPPY DEAR SIS</h3>
-            </div>
-            <p class="landing-lead">
-              Oyyy... Just because i made this doesn't mean you'll get over it Ok!! ,Listen my secret keeper, I just want you to know how lucky I am to have you as sister.
-            </p>
-            <img class="landing-img" src="jI3ylnP2.jpg" alt="Brother and Sister" />
-          </section>
-        </main>
+          <!-- Page 1: Landing Page -->
+          <div class="page-content" id="page1">
+            <section class="landing">
+              <div class="landing-title" style="font-size: 28px; font-weight: 700; color: #ff7aa2; text-align: center; margin: 10px 0; line-height: 1.2;">
+                FOR MY LOVELY
+              </div>
+              <div style="font-size: 28px; font-weight: 700; color: #ff7aa2; text-align: center; margin: 0 0 20px 0; line-height: 1.2;">
+                SISTER
+              </div>
+              <div style="font-size: 24px; font-weight: 600; color: #333; text-align: center; margin: 10px 0;">
+                BHAI DOOJ
+              </div>
+              <div style="font-size: 20px; font-weight: 600; color: #ff7aa2; text-align: center; margin: 10px 0;">
+                DEAR SIS
+              </div>
+              <p class="landing-lead" style="font-size: 16px; color: #333; text-align: center; margin: 20px 0; line-height: 1.4; max-width: 300px;">
+                You've always been supporter, my secret keeper, and my crime partner. I just want to know how lucky I am to have you as sister.
+              </p>
+              <img class="landing-img" src="jI3ylnP2.jpg" alt="Brother and Sister" style="width: 200px; height: auto; display: block; margin: 20px auto; border-radius: 15px;" />
+            </section>
 
-        <div class="bottom-cta">
-          <button class="btn light" id="btnNext" onclick="window.location.href='page2.html'">Next</button>
-        </div>
+            <div class="bottom-cta" style="margin-top: 10px;">
+              <button class="btn light" id="btnNext" style="background: #ff7aa2; color: white; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600;">Next →</button>
+            </div>
+          </div>
+
+          <!-- Page 2: Game Page -->
+          <div class="page-content" id="page2" style="display: none;">
+            <section class="game-section">
+              <div class="game-info">
+                <div class="player-info">
+                  <div class="player boy-player">
+                    <img src="k9_ikIy4.jpg" alt="Boy" class="player-avatar" />
+                    <span class="player-name">AI Brother</span>
+                  </div>
+                  <div class="vs">VS</div>
+                  <div class="player girl-player">
+                    <img src="jI3ylnP2.jpg" alt="Girl" class="player-avatar" />
+                    <span class="player-name">Sister</span>
+                  </div>
+                </div>
+                <div class="current-player" id="currentPlayer">Sister's Turn</div>
+              </div>
+              
+              <div class="task-description">
+                <h3>🎯 Sister's Mission</h3>
+                <p class="task-text">
+                  <strong>Beat your annoying brother!</strong> He thinks he's so smart with his "brain" 
+                  but you're going to show him who's really the clever one! 😤
+                </p>
+                <p class="task-text">
+                  Win this game and prove that sisters are always smarter than brothers! 
+                  Make him eat his digital dust! 💪✨
+                </p>
+                <div class="win-condition">
+                  <span class="win-text">🏆 Win the game to unlock the next page! 🏆</span>
+                </div>
+              </div>
+              
+              <div class="game-board" id="gameBoard">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+              </div>
+              
+              <div class="game-controls">
+                <button class="btn primary" id="nextPage" style="display: none;">Next</button>
+                <button class="btn secondary" id="playAgain" style="display: none;">Play Again</button>
+                <button class="btn ghost" id="backToHome">Back</button>
+              </div>
+              
+              <div class="game-result" id="gameResult" style="display: none;">
+                <h3 id="resultText"></h3>
+              </div>
+            </section>
+          </div>
+
+          <!-- Page 3: Letter Page -->
+          <div class="page-content" id="page3" style="display: none;">
+            <div class="letter-page">
+              <div class="letter-card">
+                <div class="shinchan-character">
+                  <img src="oC_Y2hO0-removebg-preview.png" alt="Shin-chan" class="shinchan-img" />
+                </div>
+                
+                <div class="letter-header">
+                  <h1 class="letter-title">A LETTER</h1>
+                  <h2 class="letter-subtitle">FROM YOUR BHAI</h2>
+                  <div class="star-divider">✦</div>
+                </div>
+                
+                <div class="letter-body">
+                  <p class="greeting">Dear Sister 💖✨</p>
+                  
+                  <p class="letter-message">
+                    I just want to remind you how special you are to me. 
+                    May your life shine as bright as your smile, and may 
+                    chocolates always find their way to you 🍫
+                  </p>
+                  
+                  <div class="sparkles">✨ ✨</div>
+                  
+                  <p class="signature">- With love, your brother</p>
+                  
+                  <div class="envelope-icon">💌</div>
+                </div>
+              </div>
+              
+              <div class="happy-badge">
+                <div class="badge-content">
+                  <span class="badge-top">HAPPY</span>
+                  <div class="badge-heart">❤️</div>
+                  <span class="badge-bottom">BHAI DOOJ</span>
+                </div>
+              </div>
+              
+              <div class="letter-controls">
+                <button class="btn back-btn" id="backToGame">← Back</button>
+                <button class="btn next-btn" id="nextPage">Next →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 4: Next Page -->
+          <div class="page-content" id="page4" style="display: none;">
+            <div class="next-page-container">
+              <div class="next-page-content">
+                <h1 class="next-page-title">🎉 Congratulations! 🎉</h1>
+                <p class="next-page-message">
+                  You've completed the Bhai Dooj journey! 
+                  The bond between siblings is truly special.
+                </p>
+                <div class="celebration-icons">
+                  <span class="celebration-icon">🎊</span>
+                  <span class="celebration-icon">🎉</span>
+                  <span class="celebration-icon">💕</span>
+                  <span class="celebration-icon">🎊</span>
+                </div>
+              </div>
+              
+              <div class="next-page-controls">
+                <button class="btn back-btn" id="backToLetter">← Back</button>
+                <button class="btn next-btn" id="backToHome">Home →</button>
+              </div>
+            </div>
+          </div>
+        </main>
 
         <footer class="app-footer">
           <small>Crafted with ❤️ for Bhai Dooj</small>
